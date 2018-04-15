@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Facelet Title</title>
-        <link rel="stylesheet" type="text/css" href="css/mainStyle.css"/>
+        <link rel="stylesheet" href="css/mainStyle.css"/>
     </h:head>
     <h:body>
         <h:form>
@@ -16,7 +16,7 @@
                 <div class="inputCap"><h:outputText  value="パスワード："></h:outputText></div>
                 <div class="inputArea"><h:inputText value="#{userBean.userPass}"></h:inputText></div>
             </div>
-            <h:commandButton value="ログイン" action="#{userBean.loginNext()}"/>
+            <div class="inputLine"><h:commandButton value="ログイン" action="#{userBean.loginNext()}"/></div>
         </h:form>
     </h:body>
 </html>

@@ -6,7 +6,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        入力されたID→<h:outputText value="#{userBean.userId}"></h:outputText>
-        <h:outputText value="#{userBean.userPass}"></h:outputText>
+        <div>入力されたID→<h:outputText value="#{userBean.userId}"></h:outputText></div>
+        <div>入力されたパスワード→<h:outputText value="#{userBean.userPass}"></h:outputText></div>
+        <h:link outcome="index">トップページへ</h:link>
     </h:body>
 </html>
