@@ -10,12 +10,13 @@
         <h:form>
             <div class="inputLine">
                 <div class="inputCap"><h:outputText  value="ID:"></h:outputText></div>
-                <div class="inputArea"><h:inputText ></h:inputText></div>
+                <div class="inputArea"><h:inputText value="#{userBean.userId}"></h:inputText></div>
             </div>
             <div class="inputLine">
                 <div class="inputCap"><h:outputText  value="パスワード："></h:outputText></div>
-                <div class="inputArea"><h:inputText ></h:inputText></div>
+                <div class="inputArea"><h:inputText value="#{userBean.userPass}"></h:inputText></div>
             </div>
+            <h:commandButton value="ログイン" action="#{userBean.loginNext()}"/>
         </h:form>
     </h:body>
 </html>
