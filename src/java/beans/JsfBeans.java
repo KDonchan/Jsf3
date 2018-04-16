@@ -5,6 +5,8 @@
  */
 package beans;
 
+import data.Meibo;
+import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
@@ -16,11 +18,15 @@ import javax.enterprise.context.ApplicationScoped;
 @Named(value = "jsfBeans")
 @ApplicationScoped
 public class JsfBeans {
-    private List<String> meibo;
+    private List<Meibo> usersList;
     /**
      * Creates a new instance of JsfBeans
      */
     public JsfBeans() {
+        usersList = new ArrayList<>();
     }
     
+    public void userAdd(Meibo user){
+        usersList.add(user);
+    }
 }
