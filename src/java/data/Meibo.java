@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package beans;
-
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+package data;
 
 /**
  *
  * @author donch
  */
-@Named(value = "userBean")
-@RequestScoped
-public class UserBean {
-    private String userId;
-    private String userPass;
-    /**
-     * Creates a new instance of UserBean
-     */
-    public UserBean() {
+public class Meibo {
+    String userId,userPass,userName;
+
+    public Meibo() {
+    }
+
+    public Meibo(String userId, String userPass, String userName) {
+        this.userId = userId;
+        this.userPass = userPass;
+        this.userName = userName;
     }
 
     public String getUserId() {
@@ -38,9 +36,13 @@ public class UserBean {
     public void setUserPass(String userPass) {
         this.userPass = userPass;
     }
- 
-    public String loginNext(){
-        String nextPage="user";
-        return nextPage;
+
+    public String getUserName() {
+        return userName;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
 }
