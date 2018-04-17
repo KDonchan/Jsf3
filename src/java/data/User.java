@@ -9,16 +9,10 @@ package data;
  *
  * @author donch
  */
-public class Meibo {
-    String userId,userPass,userName;
+public class User {
+    private String userId,userPassword,userName,userKana;
 
-    public Meibo() {
-    }
-
-    public Meibo(String userId, String userPass, String userName) {
-        this.userId = userId;
-        this.userPass = userPass;
-        this.userName = userName;
+    public User() {
     }
 
     public String getUserId() {
@@ -29,12 +23,12 @@ public class Meibo {
         this.userId = userId;
     }
 
-    public String getUserPass() {
-        return userPass;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getUserName() {
@@ -44,5 +38,14 @@ public class Meibo {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public String getUserKana() {
+        return userKana;
+    }
+
+    public void setUserKana(String userKana) {
+        this.userKana = userKana;
+    }
+    
     
 }
