@@ -10,7 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 /**
@@ -20,8 +19,7 @@ import javax.enterprise.context.SessionScoped;
 @Named(value = "userBean")
 @SessionScoped
 public class UserBean implements Serializable {
-    private String userId;
-    private String userPass;
+    private String userId,userPass,userName,userKana;
     private List<User> users;
     /**
      * Creates a new instance of UserBean
@@ -32,6 +30,22 @@ public class UserBean implements Serializable {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserKana() {
+        return userKana;
+    }
+
+    public void setUserKana(String userKana) {
+        this.userKana = userKana;
     }
 
     
@@ -68,5 +82,21 @@ public class UserBean implements Serializable {
     
     public List<User> userAll(){
         return users;
+    }
+    
+    public String findUser(String wId){
+        String nextPage=null;
+        User wUser = null;
+        for(User findUser:users){
+            if(findUser.getUserId().equals(wId))
+            {
+                wUser = findUser;
+                userPass= wUser.getUserPassword();
+                userName = wUser.getUserName();
+                userKana = wUser.getUserKana();
+                nextPage="user";
+            }
+        }
+        return nextPage;
     }
 }
