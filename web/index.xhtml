@@ -6,8 +6,8 @@
         <title>Facelet Title</title>
         <link rel="stylesheet" href="css/mainStyle.css"/>
     </h:head>
-    <h:body>
-        <h:form>
+    <h:body >
+        <h:form class="inputForm">
             <div class="inputLine">
                 <div class="inputCap"><h:outputText  value="ID:"></h:outputText></div>
                 <div class="inputArea"><h:inputText value="#{userBean.userId}"></h:inputText></div>
@@ -18,12 +18,10 @@
             </div>
             <div class="inputLine"><h:commandButton value="ログイン" action="#{userBean.loginNext()}"/></div>
         </h:form>
-        <div>
-            <h:form>
+        <h:form class="inputForm">
                 <div class="inputLine"><h:inputText value="#{userBean.userId}"/></div>
                 <div><h:commandButton value="検索" action="#{userBean.findUser()}"/></div>
-            </h:form>
-        </div>
+        </h:form>
         <div><h:link outcome="userAdd">ユーザ追加ページ</h:link></div>
         <div><h:link outcome="userAll">全ユーザ表示</h:link></div>
         <div><h:link outcome="userFind">ユーザID検索</h:link></div>
