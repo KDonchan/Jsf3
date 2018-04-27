@@ -85,11 +85,11 @@ public class UserBean implements Serializable {
         return users;
     }
     
-    public String findUser(String wId){
+    public String findUser(){
         String nextPage=null;
         User wUser = null;
         for(User findUser:users){
-            if(findUser.getUserId().equals(wId))
+            if(findUser.getUserId().equals(userId))
             {
                 wUser = findUser;
                 userPass= wUser.getUserPassword();
