@@ -3,26 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
-        <link rel="stylesheet" href="css/mainStyle.css"/>
+        <title>ユーザ登録ページ</title>
     </h:head>
     <h:body>
         <h:form>
-            <div class="inputLine">
-                <div class="inputCap">ID:</div>
-                <div class="inputArea"><h:inputText value="#{userBean.userId}"/></div>
-            </div>
-            <div class="inputLine">
-                <div class="inputCap">パスワード：</div>
-                <div class="inputArea"><h:inputText value="#{userBean.userPass}"/></div>
-            </div>
-            <div class="inputLine">
-                <div class="inputLine">
-                    <div class="inputCap">名前：</div>
-                    <div class="inputArea"><h:inputText value="#{userBean.userName}"/></div>
-                </div>
-                <h:commandButton action="#{userBean.userAdd()}" value="登録"/>
-            </div>
+            <h:panelGrid columns="3">
+                <h:outputText value="ID"/>
+                <h:inputText value="#{userBean.userId}" id="id" required="true" requiredMessage="IDは必須項目"/>
+                <h:message for="id"/>
+            
+                <h:outputText value="パスワード"/>
+                <h:inputText value="#{userBean.userPass}" id="pwd" required="true" requiredMessage="必須項目"/>
+                <h:message for="pwd"/>
+                
+                <h:outputText value="名前"/><h:inputText value="#{userBean.userName}"/>
+            </h:panelGrid>
+            <h:commandButton action="#{userBean.userAdd()}" value="登録"/>
+            
         </h:form>
     </h:body>
 </html>
