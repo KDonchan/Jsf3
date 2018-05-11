@@ -21,8 +21,8 @@
                 <h:outputText value="よみがな"/><h:inputText id="kana" value="#{userBean.userKana}"/>
                 <h:message for="kanaga"/>
             </h:panelGrid>
-            <h:commandButton action="#{userBean.userAdd()}" value="登録"/>
-            
+            <h:commandButton action="#{userBean.userAdd()}" value="登録"/><p/>
+            <h:link outcome="index">トップページへ戻る</h:link>
         </h:form>
     </h:body>
 </html>

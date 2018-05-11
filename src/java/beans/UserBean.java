@@ -70,6 +70,15 @@ public class UserBean implements Serializable {
         String nextPage="user";
         return nextPage;
     }
+
+    private void userAllClear(){
+        userClear2();
+        userId = null;
+    }
+    
+    private void userClear2(){
+        userKana = userName = userPass = null;
+    }
     
     public String userAdd(){
         String nextPage="index";
@@ -77,7 +86,9 @@ public class UserBean implements Serializable {
         wUser.setUserId(userId);
         wUser.setUserPassword(userPass);
         wUser.setUserName(userName);
+        wUser.setUserKana(userKana);
         users.add(wUser);
+        userAllClear();
         return nextPage;
     }
     
@@ -85,19 +96,24 @@ public class UserBean implements Serializable {
         return users;
     }
     
-    public String findUser(){
+   private boolean userFind(){
+        boolean flg=false;
+        userClear2();
+        for(User findUser : users)
+            if(findUser.getUserId().equals(userId)){
+                flg= true;
+                userName = findUser.getUserName();
+                userPass = findUser.getUserPassword();
+                userKana = findUser.getUserKana();
+            }
+        return flg;
+    }
+    
+    public String userFindNext(){
         String nextPage=null;
         User wUser = null;
-        for(User findUser:users){
-            if(findUser.getUserId().equals(userId))
-            {
-                wUser = findUser;
-                userPass= wUser.getUserPassword();
-                userName = wUser.getUserName();
-                userKana = wUser.getUserKana();
-                nextPage="user";
-            }
-        }
+        if(userFind())
+            nextPage="user";
         return nextPage;
     }
 }

@@ -18,7 +18,7 @@
         </h:form>
         <h:form class="inputForm">
                 <div class="inputLine"><h:inputText value="#{userBean.userId}"/></div>
-                <div><h:commandButton value="検索" action="#{userBean.findUser()}"/></div>
+                <div><h:commandButton value="検索" action="#{userBean.userFindNext()}"/></div>
         </h:form>
         <div><h:link outcome="userAdd">ユーザ追加ページ</h:link></div>
         <div><h:link outcome="userAll">全ユーザ表示</h:link></div>
