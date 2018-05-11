@@ -97,8 +97,6 @@ public class UserBean implements Serializable {
             users.add(wUser);
             userAllClear();
             nextPage="index";
-        }else{
-            errMsg="登録済みIDです";
         }
         return nextPage;
     }
