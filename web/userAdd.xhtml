@@ -16,7 +16,10 @@
                 <h:inputText value="#{userBean.userPass}" id="pwd" required="true" requiredMessage="必須項目"/>
                 <h:message for="pwd"/>
                 
-                <h:outputText value="名前"/><h:inputText value="#{userBean.userName}"/>
+                <h:outputText value="名前"/><h:inputText id="name" value="#{userBean.userName}"/>
+                <h:message for="name"/>
+                <h:outputText value="よみがな"/><h:inputText id="kana" value="#{userBean.userKana}"/>
+                <h:message for="kanaga"/>
             </h:panelGrid>
             <h:commandButton action="#{userBean.userAdd()}" value="登録"/>
             
