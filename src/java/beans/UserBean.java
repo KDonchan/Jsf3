@@ -21,6 +21,7 @@ import javax.enterprise.context.SessionScoped;
 public class UserBean implements Serializable {
     private String userId,userPass,userName,userKana;
     private List<User> users;
+    private String errMsg;//エラーメッセージ
     /**
      * Creates a new instance of UserBean
      */
@@ -46,9 +47,7 @@ public class UserBean implements Serializable {
 
     public void setUserKana(String userKana) {
         this.userKana = userKana;
-    }
-
-    
+    }    
     
     public String getUserId() {
         return userId;
@@ -65,6 +64,12 @@ public class UserBean implements Serializable {
     public void setUserPass(String userPass) {
         this.userPass = userPass;
     }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+    
+
  
     public String loginNext(){
         String nextPage="user";
@@ -81,24 +86,41 @@ public class UserBean implements Serializable {
     }
     
     public String userAdd(){
-        String nextPage="index";
-        User wUser = new  User();
-        wUser.setUserId(userId);
-        wUser.setUserPassword(userPass);
-        wUser.setUserName(userName);
-        wUser.setUserKana(userKana);
-        users.add(wUser);
-        userAllClear();
+        String nextPage=null;
+        errMsg=null;
+        if(! userIdFind()){
+            User wUser = new  User();
+            wUser.setUserId(userId);
+            wUser.setUserPassword(userPass);
+            wUser.setUserName(userName);
+            wUser.setUserKana(userKana);
+            users.add(wUser);
+            userAllClear();
+            nextPage="index";
+        }else{
+            errMsg="登録済みIDです";
+        }
         return nextPage;
     }
     
     public List<User> userAll(){
         return users;
     }
-    
-   private boolean userFind(){
+
+    //メンバー変数userIDに重複検索するIDをセットしてコール
+    //userIdが登録済みの場合はリターン値：true
+    private boolean userIdFind(){
         boolean flg=false;
-        userClear2();
+        for(User findUser : users)
+            if(findUser.getUserId().equals(userId))
+                flg = true;
+        return flg;
+    }
+    
+    //検索したいuserIdをメンバー変数userIdにセットしてコール
+    //ユーザが登録されていた場合はメンバー変数に見つかったユーザ情報をセットする。
+    private boolean userFind(){
+        boolean flg=false;
         for(User findUser : users)
             if(findUser.getUserId().equals(userId)){
                 flg= true;
