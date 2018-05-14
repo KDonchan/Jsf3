@@ -6,6 +6,7 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <h:outputText value="#{userBean.errMsg}"/><p/>
         <h:form>
             ID:<h:inputText value="#{userBean.userId}"/>
             <h:commandButton value="検索" action="#{userBean.userFindNext()}"/>

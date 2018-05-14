@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -22,6 +23,7 @@ public class UserBean implements Serializable {
     private String userId,userPass,userName,userKana;
     private List<User> users;
     private String errMsg;//エラーメッセージ
+    @Inject Jsf3Bean jsf3Bean;
     /**
      * Creates a new instance of UserBean
      */
@@ -97,6 +99,8 @@ public class UserBean implements Serializable {
             users.add(wUser);
             userAllClear();
             nextPage="index";
+        }else{   //5月14日　ID重複登録時のエラー処理追加
+            errMsg=userId+ "は登録済み。ID重複登録できません。";
         }
         return nextPage;
     }
@@ -132,8 +136,11 @@ public class UserBean implements Serializable {
     public String userFindNext(){
         String nextPage=null;
         User wUser = null;
+        errMsg=null;
         if(userFind())
             nextPage="user";
+        else //5月14日　IDが見つからない時の処理追加
+            errMsg=userId + "は見つかりませんでした";
         return nextPage;
     }
 }
