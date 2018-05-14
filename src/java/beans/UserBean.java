@@ -21,18 +21,13 @@ import javax.inject.Inject;
 @SessionScoped
 public class UserBean implements Serializable {
     private String userId,userPass,userName,userKana;
-    private List<User> users;
+    //private List<User> users;
     private String errMsg;//エラーメッセージ
-    @Inject Jsf3Bean jsf3Bean;
+    @Inject private Jsf3Bean jsf3Bean;
     /**
      * Creates a new instance of UserBean
      */
     public UserBean() {
-        users = new ArrayList<>();
-    }
-
-    public List<User> getUsers() {
-        return users;
     }
 
     public String getUserName() {
@@ -96,7 +91,7 @@ public class UserBean implements Serializable {
             wUser.setUserPassword(userPass);
             wUser.setUserName(userName);
             wUser.setUserKana(userKana);
-            users.add(wUser);
+            jsf3Bean.userAdd(wUser);
             userAllClear();
             nextPage="index";
         }else{   //5月14日　ID重複登録時のエラー処理追加
@@ -106,14 +101,14 @@ public class UserBean implements Serializable {
     }
     
     public List<User> userAll(){
-        return users;
+        return jsf3Bean.getUsers();
     }
 
     //メンバー変数userIDに重複検索するIDをセットしてコール
     //userIdが登録済みの場合はリターン値：true
     private boolean userIdFind(){
         boolean flg=false;
-        for(User findUser : users)
+        for(User findUser : jsf3Bean.getUsers())
             if(findUser.getUserId().equals(userId))
                 flg = true;
         return flg;
@@ -123,7 +118,7 @@ public class UserBean implements Serializable {
     //ユーザが登録されていた場合はメンバー変数に見つかったユーザ情報をセットする。
     private boolean userFind(){
         boolean flg=false;
-        for(User findUser : users)
+        for(User findUser : jsf3Bean.getUsers())
             if(findUser.getUserId().equals(userId)){
                 flg= true;
                 userName = findUser.getUserName();

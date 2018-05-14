@@ -29,11 +29,10 @@ public class Jsf3Bean {
     public List<User> getUsers() {
         return users;
     }
-
     
     public boolean userAdd(User wUser){
-        boolean flg = false;
-        
+        boolean flg = true;
+        users.add(wUser);
         return flg;
     }
 
