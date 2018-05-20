@@ -9,6 +9,7 @@ import data.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -18,9 +19,10 @@ import javax.inject.Inject;
  * @author donch
  */
 @Named(value = "userBean")
-@SessionScoped
+@RequestScoped
 public class UserBean implements Serializable {
     private String userId,userPass,userName,userKana;
+    boolean editFlg;
     //private List<User> users;
     private String errMsg;//エラーメッセージ
     @Inject private Jsf3Bean jsf3Bean;
@@ -28,8 +30,13 @@ public class UserBean implements Serializable {
      * Creates a new instance of UserBean
      */
     public UserBean() {
+        editFlg = true;
     }
-
+    
+    public boolean isEditFlg() {
+        return editFlg;
+    }    
+    
     public String getUserName() {
         return userName;
     }
@@ -83,20 +90,14 @@ public class UserBean implements Serializable {
     }
     
     public String userAdd(){
-        String nextPage=null;
-        errMsg=null;
-        if(! userIdFind()){
-            User wUser = new  User();
-            wUser.setUserId(userId);
-            wUser.setUserPassword(userPass);
-            wUser.setUserName(userName);
-            wUser.setUserKana(userKana);
-            jsf3Bean.userAdd(wUser);
-            userAllClear();
-            nextPage="index";
-        }else{   //5月14日　ID重複登録時のエラー処理追加
-            errMsg=userId+ "は登録済み。ID重複登録できません。";
-        }
+        String nextPage="index";
+        User wUser = new  User();
+        wUser.setUserId(userId);
+        wUser.setUserPassword(userPass);
+        wUser.setUserName(userName);
+        wUser.setUserKana(userKana);
+        jsf3Bean.userAdd(wUser);
+        userAllClear();
         return nextPage;
     }
     
@@ -137,5 +138,15 @@ public class UserBean implements Serializable {
         else //5月14日　IDが見つからない時の処理追加
             errMsg=userId + "は見つかりませんでした";
         return nextPage;
+    }
+    
+    public void idDupCheck(){
+        errMsg="";
+        if(userIdFind()){
+            editFlg = false;
+            errMsg += "登録済みIDです";         
+        }else{
+            editFlg=true;
+        }
     }
 }

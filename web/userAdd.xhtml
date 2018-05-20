@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>ユーザ登録ページ</title>
     </h:head>
@@ -10,8 +11,10 @@
         <h:form>
             <h:panelGrid columns="3">
                 <h:outputText value="ID"/>
-                <h:inputText value="#{userBean.userId}" id="id" required="true" requiredMessage="IDは必須項目"/>
-                <h:message for="id"/>
+                <h:inputText value="#{userBean.userId}" id="id" required="true">
+                    <f:ajax event="blur" execute="@this" render="idErr addButton" listener="#{userBean.idDupCheck()}"/>
+                </h:inputText>
+                <h:outputText id="idErr" value="#{userBean.errMsg}"/>
             
                 <h:outputText value="パスワード"/>
                 <h:inputText value="#{userBean.userPass}" id="pwd" required="true" requiredMessage="必須項目"/>
@@ -20,9 +23,9 @@
                 <h:outputText value="名前"/><h:inputText id="name" value="#{userBean.userName}"/>
                 <h:message for="name"/>
                 <h:outputText value="よみがな"/><h:inputText id="kana" value="#{userBean.userKana}"/>
-                <h:message for="kanaga"/>
+                <h:message for="kana"/>
             </h:panelGrid>
-            <h:commandButton action="#{userBean.userAdd()}" value="登録"/><p/>
+            <h:commandButton action="#{userBean.userAdd()}" id="addButton" value="登録" disabled="#{!userBean.editFlg}"/><p/>
             <h:link outcome="index">トップページへ戻る</h:link>
         </h:form>
     </h:body>
