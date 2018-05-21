@@ -11,10 +11,22 @@ package data;
  */
 public class User {
     private String userId,userPassword,userName,userKana;
+    private boolean editFlg;
 
     public User() {
+        editFlg=false;
     }
 
+    public boolean isEditFlg() {
+        return editFlg;
+    }
+
+    public void setEditFlg(boolean editFlg) {
+        this.editFlg = editFlg;
+    }
+
+    
+    
     public String getUserId() {
         return userId;
     }

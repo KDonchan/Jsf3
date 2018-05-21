@@ -6,12 +6,27 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <h:form>
         <h:dataTable value="#{jsf3Bean.users}" var="user" border="1">
-            <h:column>#{user.userId}</h:column>
-            <h:column>#{user.userPassword}</h:column>
-            <h:column>#{user.userName}</h:column>
-            <h:column>#{user.userKana}</h:column>
+            <h:column>
+                <h:outputText value="#{user.userId}" rendered="#{!user.editFlg}"/>
+                <h:inputText value="#{user.userId}" rendered="#{user.editFlg}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{user.userPassword}" rendered="#{!user.editFlg}"/>
+                <h:inputText value="#{user.userPassword}" rendered="#{user.editFlg}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{user.userName}" rendered="#{!user.editFlg}"/>
+                <h:inputText value="#{user.userName}" rendered="#{user.editFlg}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{user.userKana}" rendered="#{!user.editFlg}"/>
+                <h:inputText value="#{user.userKana}" rendered="#{user.editFlg}"/>
+            </h:column>
+            <h:column><h:selectBooleanCheckbox value="#{user.editFlg}" onclick="submit()"/></h:column>
         </h:dataTable>
+        </h:form>
         <h:link outcome="index">トップページへ</h:link>
     </h:body>
 </html>
