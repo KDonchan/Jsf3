@@ -7,9 +7,7 @@ package beans;
 
 import data.User;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -19,7 +17,7 @@ import javax.inject.Inject;
  * @author donch
  */
 @Named(value = "userBean")
-@RequestScoped
+@SessionScoped
 public class UserBean implements Serializable {
     private String userId,userPass,userName,userKana;
     boolean editFlg;
@@ -30,7 +28,7 @@ public class UserBean implements Serializable {
      * Creates a new instance of UserBean
      */
     public UserBean() {
-        editFlg = true;
+        editFlg = false;
     }
     
     public boolean isEditFlg() {
@@ -98,6 +96,7 @@ public class UserBean implements Serializable {
         wUser.setUserKana(userKana);
         jsf3Bean.userAdd(wUser);
         userAllClear();
+        editFlg=false;
         return nextPage;
     }
     
