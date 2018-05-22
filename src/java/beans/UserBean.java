@@ -88,7 +88,7 @@ public class UserBean implements Serializable {
     }
     
     public String userAdd(){
-        String nextPage="index";
+        String nextPage="userAdd";
         User wUser = new  User();
         wUser.setUserId(userId);
         wUser.setUserPassword(userPass);

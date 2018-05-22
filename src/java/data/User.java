@@ -24,6 +24,8 @@ public class User {
     public void setEditFlg(boolean editFlg) {
         this.editFlg = editFlg;
     }
+    
+   
 
     
     
@@ -59,5 +61,5 @@ public class User {
         this.userKana = userKana;
     }
     
-    
+ 
 }

@@ -35,6 +35,9 @@ public class Jsf3Bean {
         users.add(wUser);
         return flg;
     }
-
+   public void editEnd(User aUser){
+       boolean flg = !aUser.isEditFlg();
+        aUser.setEditFlg(flg);
+    }    
     
 }
